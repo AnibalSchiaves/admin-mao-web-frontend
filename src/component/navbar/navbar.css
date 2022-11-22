@@ -1,0 +1,22 @@
+nav ul li {
+    display: inline-block;
+    padding: 0.5em;
+    background-color:lightblue;
+    margin-right: 0;
+    border-radius: 0.5em 0.5em 0 0;
+    min-width: 10em;
+    border-right: 1px solid cadetblue;
+    border-top: 1px solid cadetblue;
+}
+
+nav ul li.active {
+    background-color: lightcyan;
+}
+
+nav ul {
+    /*background-color: blue;*/
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid cadetblue;
+}
