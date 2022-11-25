@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './component/navbar/navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import General from './component/general/general';
+import { generalService } from './services/general-service2';
 
 function App() {
   return (
@@ -10,14 +11,15 @@ function App() {
       <header className="App-header">
         <h1>MAO Admin</h1>
       </header>
-      <div className='App-content'>
-        <NavBar></NavBar>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/general' element={<General />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+          <NavBar></NavBar>
+          <div className='App-content'>
+              <Routes>
+                <Route path='/' element={<General generalService={generalService}/>}></Route>
+                <Route path='/general' element={<General generalService={generalService}/>}></Route>
+              </Routes>
+          </div>
+      </BrowserRouter>
     </div>
   );
 }

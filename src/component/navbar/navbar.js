@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import './navbar.css'
 
 export default function NavBar() {
@@ -6,11 +7,18 @@ export default function NavBar() {
     const menues = [
         {
             id:'general',
-            label:'General'
+            label:'General',
+            url:'/general'
         },
         {
-            id:'otras',
-            label:'Otras'
+            id:'Categorias',
+            label:'Categorías',
+            url:'/categorias'
+        },
+        {
+            id:'Marcas',
+            label:'Marcas',
+            url:'/marcas'
         }
     ];
     return (
@@ -18,7 +26,7 @@ export default function NavBar() {
           <ul>
             {
                 menues.map((it) => {
-                    return <li key={it.id} id={it.id} className={it.id==active?'active':''}>{it.label} </li>
+                    return <li key={it.id} id={it.id} className={it.id==active?'active':''}><NavLink onClick={(e) => {setActive(it.id)}} to={it.url}>{it.label}</NavLink></li>
                 })
             }
           </ul>
