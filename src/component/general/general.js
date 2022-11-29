@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import useGeneral from "../../services/general-service";
 import './general.css'
 
 
@@ -14,7 +13,7 @@ export default function General({generalService}) {
     //useGeneral(setCurrent);
     useEffect(() => {
         generalService.get()
-            .then(g => {setCurrent(g)})
+            .then(g => {setCurrent(g);})
             .catch(e => console.error(e))
             .finally(console.log("se obtuvieron los datos del servicio"));
     },[]);
