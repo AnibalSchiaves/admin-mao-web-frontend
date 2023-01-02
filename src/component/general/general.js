@@ -1,14 +1,24 @@
 import React, {useEffect, useState} from "react";
 import './general.css'
+import Mensaje from "../common/mensaje/mensaje";
 
 
 export default function General({generalService}) {
 
     const [current, setCurrent] = useState({
-        desactivarSitio: false,
-        activarSubcategorias: false,
-        activarLinksNavegacion: false
+        inactivo: false,
+        activa_subcat: false,
+        activa_naveg: false
     });
+
+    const initialMsg = {
+        exito: true,
+        mensajes: []
+    };
+
+    const duracionMensaje = 1500;
+
+    const [respuesta, setRespuesta] = useState(initialMsg);
     
     //useGeneral(setCurrent);
     useEffect(() => {
@@ -19,9 +29,11 @@ export default function General({generalService}) {
     },[]);
     
     
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        console.log(current);
+        const resp = await generalService.save(current);
+        setRespuesta(resp);
+        setTimeout(()=>{setRespuesta(initialMsg)},duracionMensaje);//Para que deje de mostrarlo en futuras actualizaciones del componente
     }
 
     const handleChange = (event) => {
@@ -31,29 +43,30 @@ export default function General({generalService}) {
             [target.id] : target.checked
         });
     }
-    
+
     return (
         <>
         <h2>Configuración General</h2>
+        <Mensaje error={!respuesta.exito} interval={duracionMensaje} mensajes={respuesta.mensajes} />
         <form onSubmit={onSubmit}>
             <div className="formGroup">
             <label>Desactivar Sitio:</label>
-            <input type="checkbox" id="desactivarSitio" 
-                checked={current.desactivarSitio}
+            <input type="checkbox" id="inactivo" 
+                checked={current.inactivo}
                 onChange={handleChange}>
             </input>
             </div>
             <div className="formGroup">
             <label>Activar Subcategorías:</label>
-            <input type="checkbox" id="activarSubcategorias" 
-                checked={current.activarSubcategorias}
+            <input type="checkbox" id="activa_subcat" 
+                checked={current.activa_subcat}
                 onChange={handleChange}>
             </input>
             </div>
             <div className="formGroup">
             <label>Activar Links de Navegación de Productos:</label>
-            <input type="checkbox" id="activarLinksNavegacion" 
-                checked={current.activarLinksNavegacion}
+            <input type="checkbox" id="activa_naveg" 
+                checked={current.activa_naveg}
                 onChange={handleChange}>
             </input>
             </div>

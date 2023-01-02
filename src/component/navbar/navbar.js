@@ -19,7 +19,13 @@ export default function NavBar() {
             id:'Marcas',
             label:'Marcas',
             url:'/marcas'
+        },
+        {
+            id:'Articulos',
+            label:'Artículos',
+            url:'/articulos'
         }
+
     ];
     return (
         <nav>

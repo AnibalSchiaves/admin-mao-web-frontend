@@ -1,0 +1,22 @@
+#errores {
+    margin: 0;
+    padding: 0;
+    border-radius: 0.5em;
+    opacity: 1;
+    display: inline-block;
+}
+
+#errores li {
+    list-style: none;
+    padding: 0.5em;
+}
+
+.success {
+    background-color: aquamarine;
+    display: inline-block;
+}
+
+.error {
+    background-color:lightcoral;
+    display: inline-block;
+}
